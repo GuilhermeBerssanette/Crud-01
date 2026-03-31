@@ -45,7 +45,7 @@ function removerAluno() {
         id = Number(id); 
 
         for(let i = 0; i < alunos.length; i++) {
-            if(alunos[i].nota > 6) {
+            if(alunos[i].id === id) {
                 alunos.splice(i, 1);
                 console.log("Aluno removido com sucesso");
                 mostrarMenu();
@@ -54,7 +54,7 @@ function removerAluno() {
         }
 
         console.log("aluno não encontrado");
-        mostrarMenu();
+        mostrarMenu()
 
         
     })
