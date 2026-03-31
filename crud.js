@@ -33,10 +33,59 @@ function mostrarMenu() {
             atualizarAluno();
         } else if (opcao === "5") {
             removerAluno();
+        } else if (opcao === "6") {
+            mostrarAprovados();
+        } else if (opcao === "7") {
+            mostrarReprovados()
+        } else if (opcao === "0") {
+            console.log("saindo...");
+            rl.close()
+        } else {
+            console.log("opção inválida");
+            mostrarMenu();
         }
 
     })
 }
+
+function mostrarReprovados(){
+    console.log("Mostrar Aprovados");
+
+    let encontrou = false;
+
+    for(let i = 0; i < alunos.length; i++) {
+        if(alunos[i].nota < 6) {
+            encontrou = true;
+            console.log(alunos[i].nome)
+        }
+    }
+
+    if (encontrou === false) {
+        console.log("Nenhum aluno reprovado");
+    }
+
+    mostrarAprovados();
+}
+
+function mostrarAprovados(){
+    console.log("Mostrar Aprovados");
+
+    let encontrou = false;
+
+    for(let i = 0; i < alunos.length; i++) {
+        if(alunos[i].nota >= 6) {
+            encontrou = true;
+            console.log(alunos[i].nome)
+        }
+    }
+
+    if (encontrou === false) {
+        console.log("Nenhum aluno aprovado");
+    }
+
+    mostrarAprovados();
+}
+
 
 function removerAluno() {
     console.log("Remover Aluno");
