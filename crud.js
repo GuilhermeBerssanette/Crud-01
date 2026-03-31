@@ -31,8 +31,32 @@ function mostrarMenu() {
             buscarAlunoPorId();
         } else if (opcao === "4") {
             atualizarAluno();
+        } else if (opcao === "5") {
+            removerAluno();
         }
 
+    })
+}
+
+function removerAluno() {
+    console.log("Remover Aluno");
+
+    rl.question("Digite o id do aluno que quer remover: ", (id) => {
+        id = Number(id); 
+
+        for(let i = 0; i < alunos.length; i++) {
+            if(alunos[i].nota > 6) {
+                alunos.splice(i, 1);
+                console.log("Aluno removido com sucesso");
+                mostrarMenu();
+                return;
+            }
+        }
+
+        console.log("aluno não encontrado");
+        mostrarMenu();
+
+        
     })
 }
 
