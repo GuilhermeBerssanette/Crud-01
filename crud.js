@@ -29,7 +29,58 @@ function mostrarMenu() {
             listarAluno();
         } else if (opcao === "3") {
             buscarAlunoPorId();
+        } else if (opcao === "4") {
+            atualizarAluno();
         }
+
+    })
+}
+
+function atualizarAluno() {
+    console.log("Atualizar Aluno")
+
+    rl.question("Digite o ID do aluno: ", (id) => {
+        id = Number(id);
+
+        let aluno = encontrarAlunoPorId(id);
+
+        if(aluno === null) {
+            console.log("Aluno não encontrado");
+            mostrarMenu();
+            return;
+        }
+
+        rl.question("Digite o novo nome: ", (novoNome) => {
+            rl.question("Digite a nova idade: ", (novaIdade) => {
+                rl.question("Digite a nova turma: ", (novaTurma) => {
+                    rl.question("Digite a nova nota: ", (novaNota) => {
+                        novaIdade = Number(novaIdade);
+                        novaNota = Number(novaNota);
+
+                        if (novoNome === "" || novaIdade === "" || novaTurma === "" || novaNota === "") {
+                            console.log("Todos os dados precisam ser preenchidos");
+                            mostrarMenu();
+                            return;
+                        }
+
+                        if(novaIdade <= 0 || novaNota < 0 || novaNota > 10) {
+                            console.log("Idade ou nota inválida");
+                            mostrarMenu();
+                            return;
+                        }
+
+                        aluno.nome = novoNome;
+                        aluno.idade = novaIdade;
+                        aluno.turma = novaTurma;
+                        aluno.nota = novaNota;
+
+                        console.log("atualizado com sucesso");
+                        mostrarMenu();
+
+                    })
+                })
+            })
+        })
 
     })
 }
